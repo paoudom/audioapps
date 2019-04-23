@@ -1,0 +1,88 @@
+easy_admin:
+    formats:
+        date: 'd/m/Y'
+    site_name: AUDIOAPPS
+    user:
+        name_property_path: 'username'
+        display_name: true
+    entities:
+        User:
+            title: 'Utilisateurs'
+            class: App\Entity\User
+            controller: App\Controller\Admin\AdminUserController
+            role: ROLE_ADMIN
+            name_property_path: 'username'
+            display_name: true
+            list:
+                actions:
+                    - { name: 'promote', icon: 'plus-square' }
+                    - { name: 'demote', icon: 'minus-square' }
+                    - { name: 'new', label: 'Ajouter', icon: 'add' }
+                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields: ['id', 'username', 'email', 'roles']
+            show:
+                title: 'Fiche de l''utilisateur'
+                fields:
+                    - { property: 'id', label: 'ID' }
+                    - { property: 'username', label: 'Nom' }
+                    - { property: 'email', label: 'Email' }
+                    - { property: 'roles', label: 'roles' }
+            edit:
+                actions:
+                    - { name: 'promote', css_class: 'btn btn-success' }
+                    - { name: 'demote', css_class: 'btn btn-danger'  }
+                    - { name: 'list', css_class: 'btn btn-primary'  }
+            new:
+                fields:
+                    - { property: 'username', label: 'Nom' }
+                    - { property: 'email', label: 'Mail' }
+                    - { property: 'password', label: 'Password' }
+        Audioapp:
+            title: 'Audioapps'
+            class: App\Entity\Audioapp
+            role: ROLE_ADMIN
+            list:
+                actions:
+                    - { name: 'new', label: 'Ajouter', icon: 'add' }
+                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields: ['id', 'name', { property: 'trackId', label: 'Id AppStore', sortable: true, format: '%d' }, { property: 'categorie.nom', label: 'categorie', sortable: true }]
+        Categorie:
+            title: 'Catégories'
+            class: App\Entity\Categorie
+            role: ROLE_ADMIN
+            list:
+                fields: ['id', 'nom', { property: 'audioapps', label: 'audioapps' }]
+            new:
+                fields:
+                    - { property: 'nom', label: 'Nom de la catégorie' }
+    design:
+        menu:
+            - label: 'Homepage'
+              route: 'homepage'
+              icon: 'home'
+            - label: 'Liste des utilisateurs'
+              entity: 'User' 
+              params: { sortField: 'username' } 
+              icon: 'users'
+              children:
+                  - { entity: 'User', params: { action: 'list' }, label: 'liste des utilisateurs', icon: 'address-book' }
+                  - { entity: 'User', params: { action: 'new' }, label: 'ajouter un utilisateur', icon: 'user-plus' }
+            - label: 'Liste des applications'
+              entity: 'Audioapp' 
+              params: { sortField: 'name' } 
+              icon: 'apple'
+              children:
+                  - { entity: 'Audioapp', params: { action: 'list' }, label: 'liste des applications', icon: 'list' }
+                  - { entity: 'Audioapp', params: { action: 'new' }, label: 'Ajouter une application', icon: 'plus' }
+            - label: 'Liste des catégories'
+              entity: 'Categorie' 
+              params: { sortField: 'nom' } 
+              icon: 'apple'
+              children:
+                  - { entity: 'Categorie', params: { action: 'list' }, label: 'liste des catégories', icon: 'list' }
+                  - { entity: 'Categorie', params: { action: 'new' }, label: 'Ajouter une catégorie', icon: 'plus' }
+

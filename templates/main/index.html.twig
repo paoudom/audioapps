@@ -1,0 +1,32 @@
+{% extends is_mobile() ? "mobile/base.html.twig" : "base.html.twig" %}
+
+{% block pagetitle %}
+<h1 class="text-center display-4">AUDIOAPPS</h1>
+<h2 class="text-center display-5">iOS AUDIO APPS DATABASE</h2>
+<hr />
+
+{% endblock %}
+
+{% block body %}
+<h3 class="h4 text-center mb">Last updated apps</h3>
+<hr />
+
+<div class="row">
+    {% for audioapp in audioapps %}
+    <div class="col-6 mb-4">
+        {{ include('main/include/audioapp.card.html.twig') }}
+    </div>
+    {% endfor %}
+</div>
+
+<div class="{% if is_mobile() %}pagination-mobile{% else %}pagination{% endif %} float-right">
+      {{ knp_pagination_render(audioapps) }}
+</div>
+
+
+
+{% endblock %}
+
+
+
+

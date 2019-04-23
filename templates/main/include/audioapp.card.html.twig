@@ -1,0 +1,75 @@
+        
+            <div class="card">
+                <div class="card-header">
+                    <a href="" class="btn btn-light btn-sm btn-block pt-0 pb-0 pt-2"><h5 class="card-title p-0">{{ audioapp.name }}</h5></a>
+
+
+ 
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3 text-center">
+                            <img class="card-img-top img-fluid img-thumbnail" src="{{ audioapp.artworkUrl512 }}" alt="Card image cap">
+                            
+                        </div>
+                        <div class="col-9">
+                            <small class="text-muted float-left">{{  audioapp.sellerName  }}</small>
+
+
+
+                            <small class="text-muted float-right">Updated {{ audioapp.currentVersionReleaseDate|date('d-m-Y')}}</small>
+                            <div class="clearfix"></div>
+                            {% if audioapp.newapp %}
+
+                            <p class="mt-2"><small>{{ audioapp.description|slice(0, 150) }}{% if audioapp.description|length >= 150 %} <button type="button" data-toggle="popover" title="Popover title" data-content="{{ audioapp.description }}">[...]</button>{% endif %}</small></p>
+                            {% endif %}
+                            <p class="mt-2"><small>{{ audioapp.releaseNotes|slice(0, 150) }}{% if audioapp.releaseNotes|length >= 150 %} [...]{% endif %}</small></p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">  
+                    <div class="row">
+                        <div class="col-6">
+                            <small>{{ audioapp.categorie.nom }}</small>
+                            {% if audioapp.newapp %}<span class="badge badge-light ml-4 p-2">New App</span>{% endif %}
+                        </div>
+                    
+                         <div class="col-6">
+                            <ul class="list-inline float-right  mb-0">
+
+                                <li class="list-inline-item">
+                                    {% if audioapp.au %}
+                                        <img src="{{ asset('img/logos/audio-units.jpg') }}" class="img-fluid img-thumbnail" width="30px" title="This app is compatible with audio-unit">
+                                    {% else %}
+                                        <img src="{{ asset('img/logos/no-audio-units.jpg') }}" class="img-fluid img-thumbnail" width="30px" title="This app is not compatible with audio-unit">
+                                    {% endif %}
+                                </li>
+                                <li class="list-inline-item">
+                                    {% if audioapp.iaa %}
+                                        <img src="{{ asset('img/logos/iaa.jpg') }}" class="img-fluid img-thumbnail" width="30px">
+                                    {% else %}
+                                        <img src="{{ asset('img/logos/no-iaa.jpg') }}" class="img-fluid img-thumbnail" width="30px">
+                                    {% endif %}
+                                </li>
+                                <li class="list-inline-item">
+                                    {% if audioapp.ab %}
+                                        <img src="{{ asset('img/logos/audiobus.jpg') }}" class="img-fluid img-thumbnail" width="30px">
+                                    {% else %}
+                                        <img src="{{ asset('img/logos/no-audiobus.jpg') }}" class="img-fluid img-thumbnail" width="30px">
+                                    {% endif %} 
+                                </li>
+                                <li class="list-inline-item">
+                                    {% if audioapp.link %}
+                                        <img src="{{ asset('img/logos/link.jpg') }}" class="img-fluid img-thumbnail" width="30px">
+                                    {% else %}
+                                        <img src="{{ asset('img/logos/no-link.jpg') }}" class="img-fluid img-thumbnail" width="30px">
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </div>                   
+                    </div>
+                
+                </div>
+            </div>
+        
