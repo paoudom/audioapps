@@ -1,41 +1,44 @@
         
             <div class="card">
                 <div class="card-header">
-                    <a href="" class="btn btn-light btn-sm btn-block pt-0 pb-0 pt-2"><h5 class="card-title p-0">{{ audioapp.name }}</h5></a>
+                    <a href="" class="btn btn-light btn-sm btn-block">{{ audioapp.name }}</a>
 
 
  
                 </div>
-                <div class="card-body">
+                <div class="card-body p-2">
                     <div class="row">
-                        <div class="col-3 text-center">
-                            <img class="card-img-top img-fluid img-thumbnail" src="{{ audioapp.artworkUrl512 }}" alt="Card image cap">
+                        <div class="col-4 text-center">
+                        {% if audioapp.artworkUrl512 is not empty %}
+                            <img class="card-img-top img-fluid img-thumbnail" src="{{ audioapp.artworkUrl60 }}" alt="Card image cap">
+                            {% else %}
+                            <img class="card-img-top img-fluid img-thumbnail" src="{{ audioapp.artworkUrl60 }}" alt="Card image cap">
+                            {% endif %}
                             
                         </div>
-                        <div class="col-9">
-                            <small class="text-muted float-left">{{  audioapp.sellerName  }}</small>
+                        <div class="col-8">
+                        <ul class="list-unstyled">
+                            <li><small class="text-muted">{{  audioapp.sellerName|slice(0,20)  }}</small></li>
 
-
-
-                            <small class="text-muted float-right">Updated {{ audioapp.currentVersionReleaseDate|date('d-m-Y')}}</small>
-                            <div class="clearfix"></div>
+                            <li><small class="text-muted">Updated {{ audioapp.currentVersionReleaseDate|date('d-m-Y')}}</small></li>
+                            <li>
+                            <small>{{ audioapp.categorie.nom }}</small></li>
+                            
+                            <li>
                             {% if audioapp.newapp %}
+                            <small class="text-danger">New App</small>
+                            {% else %}
+                            <small class="text-muted">Release {{ audioapp.releaseDate|date('d-m-Y')}}</small>
+                            {% endif %}</li>
+                        </li>
+                        </ul>
 
-                            <p class="mt-2"><small>{{ audioapp.description|slice(0, 150) }}{% if audioapp.description|length >= 150 %} <button type="button" data-toggle="popover" title="Popover title" data-content="{{ audioapp.description }}">[...]</button>{% endif %}</small></p>
-                            {% endif %}
-                            <p class="mt-2"><small>{{ audioapp.releaseNotes|slice(0, 150) }}{% if audioapp.releaseNotes|length >= 150 %} [...]{% endif %}</small></p>
+
 
                         </div>
                     </div>
                 </div>
                 <div class="card-footer">  
-                    <div class="row">
-                        <div class="col-6">
-                            <small>{{ audioapp.categorie.nom }}</small>
-                            {% if audioapp.newapp %}<span class="badge badge-light ml-4 p-2">New App</span>{% endif %}
-                        </div>
-                    
-                         <div class="col-6">
                             <ul class="list-inline float-right  mb-0">
 
                                 <li class="list-inline-item">
@@ -67,8 +70,8 @@
                                     {% endif %}
                                 </li>
                             </ul>
-                        </div>                   
-                    </div>
+                                         
+                    
                 
                 </div>
             </div>
