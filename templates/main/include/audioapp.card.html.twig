@@ -85,7 +85,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary btn-sm">More informations</button>
+                        <button type="button" class="btn btn-primary btn-sm" href="{{ path('show.audioapp', { id: audioapp.id }) }}">More informations</button>
                     </div>
                     </div>
                 </div>
@@ -130,7 +130,7 @@
                                     {% endif %}
                                 </li>
                             </ul>
-                            <a class="btn app-btn-watch btn-danger btn-sm float-right">More</a>
+                            <a class="btn app-btn-watch btn-danger btn-sm float-right" href="{{ path('show.audioapp', { id: audioapp.id }) }}">More</a>
                 </div>
             </div>
         

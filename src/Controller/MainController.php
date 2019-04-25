@@ -26,7 +26,7 @@ class MainController extends AbstractController
     /**
      * @var CategorieRepository
      */
-    private $rcategorie;
+    private $categorie;
 
 
 
@@ -70,23 +70,39 @@ class MainController extends AbstractController
      * 
      */
     public function indexCategories(PaginatorInterface $paginator, Request $request, ios $ios, $categorie): Response
-    {
-
-        $categories = $this->categorie->findAll();
-  
+    {  
         $audioapps = $paginator->paginate(
           $this->repository->findByGroupeQuery($categorie),
           $request->query->getInt('page', 1), 
           12);
         $title = 'Filter : ' . $categorie;
 
-
+        $categories = $this->categorie->findAll();
         $subCategories = $this->categorie->findByGroupe($categorie);
+        
 
         
           return $this->render($ios->route() . 'main/index.html.twig', [
             'audioapps' => $audioapps,
             'categories' => $categories,
+            'title' => $title,
+      ]);
+
+    }
+
+        /**
+     * @Route("/app/{id}", name="show.audioapp")
+     * @return Response
+     * 
+     */
+    public function show(Request $request, ios $ios, $id): Response
+    {  
+      $audioapp = $this->repository->find($id);
+      $title = $audioapp->getName();
+
+        
+          return $this->render($ios->route() . 'main/show.html.twig', [
+            'audioapp' => $audioapp,
             'title' => $title,
       ]);
 
