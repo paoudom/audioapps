@@ -46,21 +46,14 @@ class MainController extends AbstractController
 
         $categories = $this->categorie->findAll();
   
-        if ($request->isMethod('POST')) {
-          $audioapps = $paginator->paginate(
-            $this->repository->findByGroupeQuery($request->request->get('find_group')),
-            $request->query->getInt('page', 1), 
-            12);
-          $title = $request->request->get('find_group');
-        }
-        else
-        {
+
           $audioapps = $paginator->paginate(
             $this->repository->findRecentQuery(),
               $request->query->getInt('page', 1), 
               12);
           $title = 'Last Updated apps';
-        }
+          $subcategories = $categories;
+        
 
         
           return $this->render($ios->route() . 'main/index.html.twig', [
@@ -86,6 +79,9 @@ class MainController extends AbstractController
           $request->query->getInt('page', 1), 
           12);
         $title = 'Filter : ' . $categorie;
+
+
+        $subCategories = $this->categorie->findByGroupe($categorie);
 
         
           return $this->render($ios->route() . 'main/index.html.twig', [

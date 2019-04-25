@@ -50,6 +50,7 @@ easy_admin:
                     - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
                     - { name: 'delete', label: '', icon: 'trash' }
+                    - { name: 'update', label: '', icon: 'refresh' }
                 fields: ['id', 'name', { property: 'trackId', label: 'Id AppStore', sortable: true, format: '%d' }, { property: 'categorie.nom', label: 'categorie', sortable: true }]
             edit:
                 fields:
@@ -59,6 +60,7 @@ easy_admin:
                     - { property: 'iaa', label: 'Inter App Audio' }
                     - { property: 'ab', label: 'Audiobus' }
                     - { property: 'link', label: 'Ableton Link' }
+                    - { property: 'categorie', label: 'Categorie' }
                     - { property: 'softdescription', label: 'Description' }
                     - { property: 'manual', label: 'Manuel' }
         Categorie:
