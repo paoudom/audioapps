@@ -17,12 +17,74 @@
 }
 
 .pagination a{
-    color: black;
+    color: #343A40;
 }
 
 
 .page-item.active .page-link
 {
-    background-color: black;
+    background-color: #343A40;
     color: white;   
+}
+
+.app-card-header{
+
+    color: #343A40;
+    font-weight: normal;
+}
+
+
+
+.btn-quick-edit:hover{
+    border-color: red;
+    color : red;
+    background-color: white;
+}
+
+.app-btn-watch{
+    background-color: lightgrey;
+    color: #343A40;
+    font-weight: lighter;
+    border-color: lightgrey; 
+}
+.app-btn-watch:hover{
+    background-color: lightgrey;
+    color: #343A40;
+    border-color: grey;
+    font-weight: lighter;   
+}
+
+.fonction-acive{
+    border-color: grey;
+}
+
+.btn-patch-note{
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-color: white;
+    border: none;
+}
+
+.btn-patch-note:hover{
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    color: red;
+    background-color: white;
+    border: none;
+}
+
+.modal-app{
+
+    font-size: 14px;
+}
+
+.pagination .ul{
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.choose-categorie{
+    -webkit-appearance: none;
 }

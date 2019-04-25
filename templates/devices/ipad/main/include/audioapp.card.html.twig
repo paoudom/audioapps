@@ -1,0 +1,73 @@
+        
+            <div class="card">
+                <div class="card-header p-2 app-card-header">
+                    {{ audioapp.name }}
+                    {% if is_granted('ROLE_ADMIN') %}
+
+                    <a href="" class="btn btn-sm btn-light float-right btn-quick-edit p-1"><strong>E</strong></a>
+                    {% endif %}
+                </div>
+                <div class="card-body p-2">
+                    <div class="row">
+                        <div class="col-4 text-center">
+
+                            <img class="card-img-top img-fluid img-thumbnail" src="{{ audioapp.preferedIcon }}" alt="{{ audioapp.name }}">
+
+                            
+                        </div>
+                        <div class="col-8">
+                        <ul class="list-unstyled">
+                            <li><small class="text-muted">{{  audioapp.sellerName|slice(0,20)  }}</small></li>
+
+                            <li><small class="text-muted">Updated {{ audioapp.currentVersionReleaseDate|date('d-m-Y')}}</small></li>
+                            <li>
+                            <small>{{ audioapp.categorie.nom }}</small></li>
+                            
+                            <li>
+                            {% if audioapp.newapp %}
+                            <small class="text-danger">New App</small>
+                            {% else %}
+                            <small class="text-muted">Release {{ audioapp.releaseDate|date('d-m-Y')}}</small>
+                            {% endif %}</li>
+                        </li>
+                        </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">  
+                            <ul class="list-inline float-left  mb-0">
+
+                                <li class="list-inline-item">
+                                    {% if audioapp.au %}
+                                        <img src="{{ asset('img/logos/audio-units.jpg') }}" class="img-fluid img-thumbnail fonction-acive" width="30px" title="This app is compatible with audio-unit">
+                                    {% else %}
+                                        <img src="{{ asset('img/logos/no-audio-units.jpg') }}" class="img-fluid img-thumbnail" width="30px" title="This app is not compatible with audio-unit">
+                                    {% endif %}
+                                </li>
+                                <li class="list-inline-item">
+                                    {% if audioapp.iaa %}
+                                        <img src="{{ asset('img/logos/iaa.jpg') }}" class="img-fluid img-thumbnail fonction-acive" width="30px">
+                                    {% else %}
+                                        <img src="{{ asset('img/logos/no-iaa.jpg') }}" class="img-fluid img-thumbnail" width="30px">
+                                    {% endif %}
+                                </li>
+                                <li class="list-inline-item">
+                                    {% if audioapp.ab %}
+                                        <img src="{{ asset('img/logos/audiobus.jpg') }}" class="img-fluid img-thumbnail fonction-acive" width="30px">
+                                    {% else %}
+                                        <img src="{{ asset('img/logos/no-audiobus.jpg') }}" class="img-fluid img-thumbnail" width="30px">
+                                    {% endif %} 
+                                </li>
+                                <li class="list-inline-item">
+                                    {% if audioapp.link %}
+                                        <img src="{{ asset('img/logos/link.jpg') }}" class="img-fluid img-thumbnail fonction-acive" width="30px">
+                                    {% else %}
+                                        <img src="{{ asset('img/logos/no-link.jpg') }}" class="img-fluid img-thumbnail" width="30px">
+                                    {% endif %}
+                                </li>
+                            </ul>
+                            <a class="btn btn-secondary app-btn-watch btn-sm float-right">More</a>
+                </div>
+            </div>
+        

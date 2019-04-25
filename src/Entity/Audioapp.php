@@ -243,7 +243,12 @@ class Audioapp
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $descriptionFR;	
+    private $descriptionFR;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $preferedIcon;	
 	
 	
 
@@ -351,9 +356,9 @@ class Audioapp
 
 	
 	public function getScreenshotUrls(): ?array
-    {
-        return $this->screenshotUrls;
-    }
+             {
+                 return $this->screenshotUrls;
+             }
 
     public function setScreenshotUrls(?array $screenshotUrls): self
     {
@@ -783,17 +788,17 @@ class Audioapp
     }
 	
 	public function isRenseigned(): ?bool
-    {
-		if(empty($this->getTrackId()))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-        
-    }
+             {
+         		if(empty($this->getTrackId()))
+         		{
+         			return true;
+         		}
+         		else
+         		{
+         			return false;
+         		}
+                 
+             }
 
     public function getCategorie(): ?Categorie
     {
@@ -822,5 +827,32 @@ class Audioapp
 
         if($this->releaseDate == $this->currentVersionReleaseDate){return true;}
         return false;
+    }
+
+    public function getPreferedIcon(): ?string
+    {
+        if(empty($this->preferedIcon))
+        {
+            return $this->artworkUrl512;
+        }
+        elseif($this->preferedIcon == '160')
+        {
+            return $this->artworkUrl60;
+        }
+        elseif($this->preferedIcon == '512')
+        {
+            return $this->artworkUrl512;
+        }
+        elseif($this->preferedIcon == '100')
+        {
+            return $this->artworkUrl100;
+        }
+    }
+
+    public function setPreferedIcon(?int $preferedIcon): self
+    {
+        $this->preferedIcon = $preferedIcon;
+
+        return $this;
     }
 }

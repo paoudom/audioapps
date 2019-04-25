@@ -27,8 +27,26 @@ class AudioappRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->orderBy('a.currentVersionReleaseDate', 'DESC')
+            ->leftJoin('a.categorie', 'cat')
+            ->addSelect('cat')
         ;
     }
+
+    /**
+    * @return Query
+    */
+    public function findByGroupeQuery($groupe) : QueryBuilder
+    {   
+        $query = $this->createQueryBuilder('a')
+            ->leftJoin('a.categorie', 'cat')
+            ->addSelect('cat')
+            ->where('cat.groupe = :groupe')
+            ->orderBy('a.currentVersionReleaseDate', 'DESC')
+            ->setParameter('groupe', $groupe)
+        ;
+        return $query;
+    }
+
 
 
     /*

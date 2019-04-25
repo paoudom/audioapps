@@ -24,6 +24,11 @@ class Categorie
     private $nom;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $groupe;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Audioapp", mappedBy="categorie", orphanRemoval=true)
      */
     private $audioapps;
@@ -46,6 +51,18 @@ class Categorie
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getGroupe(): ?string
+    {
+        return $this->groupe;
+    }
+
+    public function setGroupe(string $groupe): self
+    {
+        $this->groupe = $groupe;
 
         return $this;
     }

@@ -1,21 +1,17 @@
-{% extends is_mobile() ? "mobile/base.html.twig" : "base.html.twig" %}
+{% extends "devices/ipad/base.html.twig" %}
 
 {% block pagetitle %}
-<h1 class="text-center display-4">AUDIOAPPS</h1>
-<h2 class="text-center display-5">iOS AUDIO APPS DATABASE</h2>
-<hr />
-
 {% endblock %}
 
 {% block body %}
 
 <div class="row mb-2 pb-0">
-    <div class="col-4">
-        <h3 class="h4">{{ title|title }}</h3>
+    <div class="col-3">
+        <h3 class="h5">{{ title|title }}</h3>
     </div>
     <div class="col-3">
-                    <select  class="form-control"  onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-                        <option value="">Find by categorie</option>
+                    <select  class="form-control choose-categorie"  onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+                        <option value="">Categories</option>
                             <option value="{{ path('index.categorie', { categorie: 'synth' }) }}">Synth</option>
                             <option value="{{ path('index.categorie', { categorie: 'tools' }) }}">Tools</option>
                             <option value="{{ path('index.categorie', { categorie: 'instrument' }) }}">Instrument</option>
@@ -25,7 +21,7 @@
                             <option value="{{ path('index.categorie', { categorie: 'midi' }) }}">Midi</option>
                     </select>
     </div>
-    <div class="col-5 pagination">
+    <div class="col-6 pagination">
         {{ knp_pagination_render(audioapps) }}
                
     </div>
@@ -40,7 +36,7 @@
     {% for audioapp in audioapps %}
 
 
-    <div class="col-4 mb-4">
+    <div class="col-6 mb-4">
         {{ include('main/include/audioapp.card.html.twig') }}
     </div>
     {% endfor %}
@@ -51,7 +47,3 @@
 
 
 {% endblock %}
-
-
-
-

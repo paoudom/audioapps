@@ -42,6 +42,7 @@ easy_admin:
         Audioapp:
             title: 'Audioapps'
             class: App\Entity\Audioapp
+            controller: App\Controller\Admin\AdminAudioappController
             role: ROLE_ADMIN
             list:
                 actions:
@@ -78,6 +79,7 @@ easy_admin:
               children:
                   - { entity: 'Audioapp', params: { action: 'list' }, label: 'liste des applications', icon: 'list' }
                   - { entity: 'Audioapp', params: { action: 'new' }, label: 'Ajouter une application', icon: 'plus' }
+                  - { entity: 'Audioapp', params: { action: 'updateAll' }, label: 'Mettre a jour les applications', icon: 'refresh' }
             - label: 'Liste des catégories'
               entity: 'Categorie' 
               params: { sortField: 'nom' } 
