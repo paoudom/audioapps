@@ -51,7 +51,7 @@ class MainController extends AbstractController
             $this->repository->findByGroupeQuery($request->request->get('find_group')),
             $request->query->getInt('page', 1), 
             12);
-          $title = 'Filter : ' . $request->request->get('find_group');
+          $title = $request->request->get('find_group');
         }
         else
         {
@@ -95,6 +95,8 @@ class MainController extends AbstractController
       ]);
 
     }
+
+
 
 
 

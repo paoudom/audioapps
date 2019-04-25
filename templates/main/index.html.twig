@@ -10,25 +10,29 @@
 {% block body %}
 
 <div class="row mb-2 pb-0">
-    <div class="col-4">
-        <h3 class="h4">{{ title|title }}</h3>
+
+
+    <div class="col-auto mr-auto">
+
+        <select  class="form-control choose-categorie"  onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+            <option value="">{{ title|title }}</option>
+            <option value="{{ path('index.categorie', { categorie: 'synth' }) }}">Synth</option>
+            <option value="{{ path('index.categorie', { categorie: 'tools' }) }}">Tools</option>
+            <option value="{{ path('index.categorie', { categorie: 'instrument' }) }}">Instrument</option>
+            <option value="{{ path('index.categorie', { categorie: 'effect' }) }}">Effect</option>
+            <option value="{{ path('index.categorie', { categorie: 'drum' }) }}">Drum</option>
+            <option value="{{ path('index.categorie', { categorie: 'sequencer' }) }}">Sequencer</option>
+            <option value="{{ path('index.categorie', { categorie: 'midi' }) }}">Midi</option>
+        </select>
     </div>
-    <div class="col-3">
-                    <select  class="form-control"  onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-                        <option value="">Find by categorie</option>
-                            <option value="{{ path('index.categorie', { categorie: 'synth' }) }}">Synth</option>
-                            <option value="{{ path('index.categorie', { categorie: 'tools' }) }}">Tools</option>
-                            <option value="{{ path('index.categorie', { categorie: 'instrument' }) }}">Instrument</option>
-                            <option value="{{ path('index.categorie', { categorie: 'effect' }) }}">Effect</option>
-                            <option value="{{ path('index.categorie', { categorie: 'drum' }) }}">Drum</option>
-                            <option value="{{ path('index.categorie', { categorie: 'sequencer' }) }}">Sequencer</option>
-                            <option value="{{ path('index.categorie', { categorie: 'midi' }) }}">Midi</option>
-                    </select>
+    <div class="col-auto pagination">
+    {{ knp_pagination_render(audioapps) }}
     </div>
-    <div class="col-5 pagination">
-        {{ knp_pagination_render(audioapps) }}
-               
-    </div>
+
+
+
+
+
 
 
 </div>

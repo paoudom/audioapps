@@ -3,12 +3,18 @@
 namespace App\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+
+use Doctrine\Common\Persistence\ObjectManager;
+
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 
 use App\Repository\AudioappRepository;
 use App\Entity\Audioapp;
+use App\Form\AudioappType;
 
 class AdminAudioappController extends BaseAdminController
 {
@@ -17,11 +23,17 @@ class AdminAudioappController extends BaseAdminController
      * @var CategorieRepository
      */
     private $repository;
+    /**
+     * @var ObjectManager
+     */
+    private $om;
 
-    public function __construct(AudioappRepository $repository)
+    public function __construct(AudioappRepository $repository, ObjectManager $om)
     {
         $this->repository = $repository;
+        $this->om = $om;
     }
+
 
     public function updateAllAction()
     {
@@ -174,7 +186,6 @@ class AdminAudioappController extends BaseAdminController
             'entity' => 'Audioapp',
         ));
     }
-
 
 
 }

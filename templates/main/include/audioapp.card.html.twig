@@ -12,7 +12,7 @@
                                 <i class="fas fa-tools"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Quick Edit</a>
+                                <a class="dropdown-item" href="{{ path('easyadmin', { action : 'edit', entity : 'Audioapp', id: audioapp.id }) }}">Quick Edit</a>
                                 <a class="dropdown-item" href="https://audiob.us/apps/search/{{ audioapp.name }}" target="_blank">Audiobus</a>
                             </div>
                         </div>

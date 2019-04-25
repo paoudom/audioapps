@@ -51,6 +51,16 @@ easy_admin:
                     - { name: 'edit', label: '', icon: 'edit' }
                     - { name: 'delete', label: '', icon: 'trash' }
                 fields: ['id', 'name', { property: 'trackId', label: 'Id AppStore', sortable: true, format: '%d' }, { property: 'categorie.nom', label: 'categorie', sortable: true }]
+            edit:
+                fields:
+                    - { property: 'appid', label: 'Identifiant AppStore' }
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'au', label: 'Audio Unite' }
+                    - { property: 'iaa', label: 'Inter App Audio' }
+                    - { property: 'ab', label: 'Audiobus' }
+                    - { property: 'link', label: 'Ableton Link' }
+                    - { property: 'softdescription', label: 'Description' }
+                    - { property: 'manual', label: 'Manuel' }
         Categorie:
             title: 'Catégories'
             class: App\Entity\Categorie
@@ -60,6 +70,7 @@ easy_admin:
             new:
                 fields:
                     - { property: 'nom', label: 'Nom de la catégorie' }
+
     design:
         menu:
             - label: 'Homepage'
