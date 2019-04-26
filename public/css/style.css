@@ -88,3 +88,12 @@
 .choose-categorie{
     -webkit-appearance: none;
 }
+
+.iphone-description{
+    font-size: 14px;
+}
+
+
+.modal-dialog {
+    max-width: 600px;
+}

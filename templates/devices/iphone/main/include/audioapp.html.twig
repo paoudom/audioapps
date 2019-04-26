@@ -1,23 +1,23 @@
 
 <div class="card mb-2">
-    <div class="card-header bg-light">
-        <h3>{{ audioapp.TrackName }}</h3>
+    <div class="card-header bg-light text-center">
+        <h3 class="iphone-title">{{ audioapp.TrackName }}</h3>
     </div>
-  <div class="card-body">
+  <div class="card-body p-2">
         <div class="row">
-            <div class="col-3">
+            <div class="col-4">
                 <img class="img-fluid img-thumbnail" src="{{ audioapp.preferedIcon }}" alt="{{ audioapp.name }}" />
             
             </div>
-            <div class="col-9">
+            <div class="col-8">
 
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 iphone-description">
                     <ul class="list-unstyled">
                         <li>Developer : {{ audioapp.artistName|title }}</li> 
                         <li>Categorie : {{ audioapp.categorie.groupe|title  }} - {{ audioapp.categorie.nom|title  }}</li>
                         <li>Minimum OS version : {{ audioapp.MinimumOsVersion }}</li>
-                        <li>Laste Update : {{ audioapp.CurrentVersionReleaseDate|date('m-d--Y') }}</li>
+                        <li>Laste Update : {{ audioapp.CurrentVersionReleaseDate|date('m-d-Y') }}</li>
                         <li>App Size : {{ audioapp.FileSizeBytes }}</li>
                     </ul>
                 </div>
@@ -35,14 +35,14 @@
         
 
 <div class="card mb-2">
-    <div class="card-header bg-light">
+    <div class="card-header bg-light  text-center">
         <h5>Screenshot</h5>
     </div>
     <div class="card-body">
         <div class="row">
             {% if audioapp.ipadScreenshotUrls is not empty %}
                 {% for key, screen in audioapp.ipadScreenshotUrls %}
-                    <div class="col-3">
+                    <div class="col-6">
                         <button type="button" class="btn btn-light" data-toggle="modal" data-target="#img_{{ key }}">
                         <img class="img-fluid img-thumbnail" src="{{ screen }}" alt="{{ audioapp.name }}" />
                         </button>
@@ -50,7 +50,7 @@
                 {% endfor %}
             {% elseif audioapp.screenshotUrls is not empty %}
                 {% for key, screen in audioapp.screenshotUrls|keys %}
-                    <div class="col-3">
+                    <div class="col-6">
                     <button type="button" class="btn btn-light" data-toggle="modal" data-target="#img_{{ key }}">
                         <img class="img-fluid img-thumbnail" src="{{ screen }}" alt="{{ audioapp.name }}" />
                         </button>
@@ -61,8 +61,46 @@
     </div>
 </div>
 
+<div class="card mb-2">
+    <div class="card-header  bg-light  text-center">
+        <h5>Compatibility</h5>     
+    </div>
+    <div class="card-body">
+        <ul class="list-inline text-center  mb-0">
+            <li class="list-inline-item">
+                {% if audioapp.au %}
+                    <img src="{{ asset('img/logos/audio-units.jpg') }}" class="img-fluid img-thumbnail fonction-acive" width="40px" title="This app is compatible with audio-unit">
+                {% else %}
+                    <img src="{{ asset('img/logos/no-audio-units.jpg') }}" class="img-fluid img-thumbnail" width="40px" title="This app is not compatible with audio-unit">
+                {% endif %}
+                </li>
+                <li class="list-inline-item">
+                {% if audioapp.iaa %}
+                    <img src="{{ asset('img/logos/iaa.jpg') }}" class="img-fluid img-thumbnail fonction-acive" width="30px">
+                {% else %}
+                    <img src="{{ asset('img/logos/no-iaa.jpg') }}" class="img-fluid img-thumbnail" width="40px">
+                {% endif %}
+                    </li>
+                <li class="list-inline-item">
+                {% if audioapp.ab %}
+                    <img src="{{ asset('img/logos/audiobus.jpg') }}" class="img-fluid img-thumbnail fonction-acive" width="30px">
+                {% else %}
+                    <img src="{{ asset('img/logos/no-audiobus.jpg') }}" class="img-fluid img-thumbnail" width="40px">
+                {% endif %} 
+                </li>
+                <li class="list-inline-item">
+                {% if audioapp.link %}
+                    <img src="{{ asset('img/logos/link.jpg') }}" class="img-fluid img-thumbnail fonction-acive" width="40px">
+                {% else %}
+                    <img src="{{ asset('img/logos/no-link.jpg') }}" class="img-fluid img-thumbnail" width="40px">
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</div>
+
 <div class="card  mb-2">
-    <div class="card-header bg-light">
+    <div class="card-header bg-light  text-center">
         <h5>Patch note</h5>
     </div>
     <div class="card-body">
@@ -71,7 +109,7 @@
 </div>
 
 <div class="card">
-    <div class="card-header bg-light">
+    <div class="card-header bg-light  text-center">
         <h5>Description</h5>
     </div>
     <div class="card-body">
@@ -84,7 +122,7 @@
             {% if audioapp.ipadScreenshotUrls is not empty %}
                 {% for key, screen in audioapp.ipadScreenshotUrls %}
                     <div class="modal fade" id="img_{{ key }}" tabindex="-1" role="dialog" aria-labelledby="img_{{ key }}Label" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="card text-center">
                                 <div class="card-body">
@@ -101,7 +139,7 @@
             {% elseif audioapp.screenshotUrls is not empty %}
                 {% for key, screen in audioapp.screenshotUrls %}
                     <div class="modal fade" id="img_{{ key }}" tabindex="-1" role="dialog" aria-labelledby="img_{{ key }}Label" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-body">    
 

@@ -84,7 +84,7 @@
             {% if audioapp.ipadScreenshotUrls is not empty %}
                 {% for key, screen in audioapp.ipadScreenshotUrls %}
                     <div class="modal fade" id="img_{{ key }}" tabindex="-1" role="dialog" aria-labelledby="img_{{ key }}Label" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="card text-center">
                                 <div class="card-body">
@@ -101,7 +101,7 @@
             {% elseif audioapp.screenshotUrls is not empty %}
                 {% for key, screen in audioapp.screenshotUrls %}
                     <div class="modal fade" id="img_{{ key }}" tabindex="-1" role="dialog" aria-labelledby="img_{{ key }}Label" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-body">    
 
