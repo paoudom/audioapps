@@ -77,6 +77,7 @@ class MainController extends AbstractController
           $request->query->getInt('page', 1), 
           12);
         $title = 'Filter : ' . $categorie;
+        $audioapps->setPageRange(1);
 
         $categories = $this->categorie->findAll();
         $subCategories = $this->categorie->findByGroupe($categorie);
