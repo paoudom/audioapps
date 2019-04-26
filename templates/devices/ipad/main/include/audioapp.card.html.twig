@@ -4,7 +4,16 @@
                     {{ audioapp.name }}
                     {% if is_granted('ROLE_ADMIN') %}
 
-                    <a href="" class="btn btn-sm btn-light float-right btn-quick-edit p-1"><strong>E</strong></a>
+                        <div class="dropdown float-right">
+                            <button class="btn btn-sm btn-light float-right btn-quick-edit dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-tools"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{ path('easyadmin', { action : 'edit', entity : 'Audioapp', id: audioapp.id }) }}">Quick Edit</a>
+                                <a class="dropdown-item" href="https://audiob.us/apps/search/{{ audioapp.name }}" target="_blank">Audiobus</a>
+                            </div>
+                        </div>
+
                     {% endif %}
                 </div>
                 <div class="card-body p-2">
@@ -25,16 +34,62 @@
                             
                             <li>
                             {% if audioapp.newapp %}
-                            <small class="text-danger">New App</small>
+                            <small class=" ">
+                                <button type="button" class="btn btn-sm btn-light btn-patch-note text-danger" data-toggle="modal" data-target="#{{ audioapp.trackId }}">
+                                    <i class="fas fa-long-arrow-alt-right mr-1"></i>New App
+                                </button>
+                            </small>
                             {% else %}
-                            <small class="text-muted">Release {{ audioapp.releaseDate|date('d-m-Y')}}</small>
-                            {% endif %}</li>
+                            <small class="text-muted">
+                                <button type="button" class="btn btn-sm btn-light btn-patch-note" data-toggle="modal" data-target="#{{ audioapp.trackId }}">
+                                    <i class="fas fa-long-arrow-alt-right mr-1 text-secondary"></i>Patch note
+                                </button>
+                            </small>
+                            {% endif %}
+                            </li>
                         </li>
                         </ul>
 
                         </div>
                     </div>
                 </div>
+
+
+                <div class="modal fade" id="{{ audioapp.trackId }}" tabindex="-1" role="dialog" aria-labelledby="{{ audioapp.trackId }}Label" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ audioapp.name }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-3">
+                                <img class="card-img-top img-fluid img-thumbnail" src="{{ audioapp.preferedIcon }}" alt="{{ audioapp.name }}">
+
+                            </div>
+                            <div class="col-9">
+                                <div class="modal-app">
+                                {% if audioapp.newapp %}
+                                    {{ audioapp.description|markdown }}
+                                {% else %}
+                                    {{ audioapp.releaseNotes|markdown }}
+                                {% endif %}
+                                </div> 
+                            </div>
+                        </div>   
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+
                 <div class="card-footer">  
                             <ul class="list-inline float-left  mb-0">
 

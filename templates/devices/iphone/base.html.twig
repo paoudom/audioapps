@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}AUDIOAPPS{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
         {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -49,7 +50,7 @@
         </nav>
 
 
-        <div class="container mt-4">
+        <div class="container-fluid mt-4">
 
         {% block pagetitle %}{% endblock %}
 

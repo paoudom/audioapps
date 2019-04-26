@@ -1,7 +1,7 @@
 {% extends is_mobile() ? "mobile/base.html.twig" : "base.html.twig" %}
 
 {% block pagetitle %}
-<h1 class="text-center display-4 mt-10">iOS AUDIO APPS DATABASE</h1>
+<h1 class="text-center display-4">iOS AUDIO APPS DATABASE</h1>
 <hr />
 
 {% endblock %}
@@ -27,11 +27,6 @@
     <div class="col-auto pagination">
     {{ knp_pagination_render(audioapps) }}
     </div>
-
-
-
-
-
 
 
 </div>

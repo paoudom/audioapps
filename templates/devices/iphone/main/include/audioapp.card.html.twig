@@ -1,0 +1,129 @@
+        
+            <div class="card">
+                <div class="card-header p-2 app-card-header">
+                    {{ audioapp.name }}
+                    {% if is_granted('ROLE_ADMIN') %}
+
+                        <div class="dropdown float-right">
+                            <button class="btn btn-sm btn-light float-right btn-quick-edit dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-tools"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{ path('easyadmin', { action : 'edit', entity : 'Audioapp', id: audioapp.id }) }}">Quick Edit</a>
+                                <a class="dropdown-item" href="https://audiob.us/apps/search/{{ audioapp.name }}" target="_blank">Audiobus</a>
+                            </div>
+                        </div>
+
+                    {% endif %}
+                </div>
+                <div class="card-body p-2">
+                    <div class="row">
+                        <div class="col-4 text-center">
+
+                            <img class="card-img-top img-fluid img-thumbnail" src="{{ audioapp.preferedIcon }}" alt="{{ audioapp.name }}">
+
+                            
+                        </div>
+                        <div class="col-8">
+                        <ul class="list-unstyled">
+                            <li><small class="text-muted">{{  audioapp.sellerName|slice(0,20)  }}</small></li>
+
+                            <li><small class="text-muted">Updated {{ audioapp.currentVersionReleaseDate|date('d-m-Y')}}</small></li>
+                            <li>
+                            <small>{{ audioapp.categorie.nom }}</small></li>
+                            
+                            <li>
+                            {% if audioapp.newapp %}
+                            <small class=" ">
+                                <button type="button" class="btn btn-sm btn-light btn-patch-note text-danger" data-toggle="modal" data-target="#{{ audioapp.trackId }}">
+                                    <i class="fas fa-long-arrow-alt-right mr-1"></i>New App
+                                </button>
+                            </small>
+                            {% else %}
+                            <small class="text-muted">
+                                <button type="button" class="btn btn-sm btn-light btn-patch-note" data-toggle="modal" data-target="#{{ audioapp.trackId }}">
+                                    <i class="fas fa-long-arrow-alt-right mr-1 text-secondary"></i>Patch note
+                                </button>
+                            </small>
+                            {% endif %}
+                            </li>
+                        </li>
+                        </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal fade" id="{{ audioapp.trackId }}" tabindex="-1" role="dialog" aria-labelledby="{{ audioapp.trackId }}Label" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ audioapp.name }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-3">
+                                <img class="card-img-top img-fluid img-thumbnail" src="{{ audioapp.preferedIcon }}" alt="{{ audioapp.name }}">
+
+                            </div>
+                            <div class="col-9">
+                                <div class="modal-app">
+                                {% if audioapp.newapp %}
+                                    {{ audioapp.description|markdown }}
+                                {% else %}
+                                    {{ audioapp.releaseNotes|markdown }}
+                                {% endif %}
+                                </div> 
+                            </div>
+                        </div>   
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary btn-sm" href="{{ path('show.audioapp', { id: audioapp.id }) }}">More informations</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+
+                <div class="card-footer">  
+                            <ul class="list-inline float-left  mb-0">
+
+                                <li class="list-inline-item">
+                                    {% if audioapp.au %}
+                                        <img src="{{ asset('img/logos/audio-units.jpg') }}" class="img-fluid img-thumbnail fonction-acive" width="30px" title="This app is compatible with audio-unit">
+                                    {% else %}
+                                        <img src="{{ asset('img/logos/no-audio-units.jpg') }}" class="img-fluid img-thumbnail" width="30px" title="This app is not compatible with audio-unit">
+                                    {% endif %}
+                                </li>
+                                <li class="list-inline-item">
+                                    {% if audioapp.iaa %}
+                                        <img src="{{ asset('img/logos/iaa.jpg') }}" class="img-fluid img-thumbnail fonction-acive" width="30px">
+                                    {% else %}
+                                        <img src="{{ asset('img/logos/no-iaa.jpg') }}" class="img-fluid img-thumbnail" width="30px">
+                                    {% endif %}
+                                </li>
+                                <li class="list-inline-item">
+                                    {% if audioapp.ab %}
+                                        <img src="{{ asset('img/logos/audiobus.jpg') }}" class="img-fluid img-thumbnail fonction-acive" width="30px">
+                                    {% else %}
+                                        <img src="{{ asset('img/logos/no-audiobus.jpg') }}" class="img-fluid img-thumbnail" width="30px">
+                                    {% endif %} 
+                                </li>
+                                <li class="list-inline-item">
+                                    {% if audioapp.link %}
+                                        <img src="{{ asset('img/logos/link.jpg') }}" class="img-fluid img-thumbnail fonction-acive" width="30px">
+                                    {% else %}
+                                        <img src="{{ asset('img/logos/no-link.jpg') }}" class="img-fluid img-thumbnail" width="30px">
+                                    {% endif %}
+                                </li>
+                            </ul>
+                            <a class="btn btn-secondary app-btn-watch btn-sm float-right">More</a>
+                </div>
+            </div>
+        

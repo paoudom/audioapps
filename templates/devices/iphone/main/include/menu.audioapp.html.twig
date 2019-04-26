@@ -1,0 +1,72 @@
+
+<div class="card mb-2">
+    <div class="card-header">
+        Price     
+    </div>
+    <div class="card-body text-center">
+        <h3>{{ audioapp.FormattedPrice }}</h3>
+        <a  class="" href="{{ audioapp.TrackViewUrl }}" target="_blank"><img class="img-fluid img-thumbnail" src="{{ asset('img/logos/appstore-logo.png') }}" /></a>
+    </div>
+
+</div>
+
+
+
+<div class="card">
+    <div class="card-header">
+        Compatibility     
+    </div>
+    <div class="card-body">
+        <ul class="list-inline text-center  mb-0">
+            <li class="list-inline-item">
+                {% if audioapp.au %}
+                    <img src="{{ asset('img/logos/audio-units.jpg') }}" class="img-fluid img-thumbnail fonction-acive" width="30px" title="This app is compatible with audio-unit">
+                {% else %}
+                    <img src="{{ asset('img/logos/no-audio-units.jpg') }}" class="img-fluid img-thumbnail" width="30px" title="This app is not compatible with audio-unit">
+                {% endif %}
+                </li>
+                <li class="list-inline-item">
+                {% if audioapp.iaa %}
+                    <img src="{{ asset('img/logos/iaa.jpg') }}" class="img-fluid img-thumbnail fonction-acive" width="30px">
+                {% else %}
+                    <img src="{{ asset('img/logos/no-iaa.jpg') }}" class="img-fluid img-thumbnail" width="30px">
+                {% endif %}
+                    </li>
+                <li class="list-inline-item">
+                {% if audioapp.ab %}
+                    <img src="{{ asset('img/logos/audiobus.jpg') }}" class="img-fluid img-thumbnail fonction-acive" width="30px">
+                {% else %}
+                    <img src="{{ asset('img/logos/no-audiobus.jpg') }}" class="img-fluid img-thumbnail" width="30px">
+                {% endif %} 
+                </li>
+                <li class="list-inline-item">
+                {% if audioapp.link %}
+                    <img src="{{ asset('img/logos/link.jpg') }}" class="img-fluid img-thumbnail fonction-acive" width="30px">
+                {% else %}
+                    <img src="{{ asset('img/logos/no-link.jpg') }}" class="img-fluid img-thumbnail" width="30px">
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+{% if audioapp.averageUserRating is not empty %}
+<div class="card mt-2">
+    <div class="card-header">
+       Rating   
+    </div>
+    <div class="card-body text-center">
+        <h5>{{ audioapp.averageUserRating }}/5 - ({{ audioapp.UserRatingCount  }}) votes</h5>
+
+    </div>
+</div>
+{% endif %}
+
+<div class="card mt-2">
+
+    <div class="card-body text-center">
+        <a href="javascript:history.go(-1)" class="btn btn-light btn-block">BACK</a>
+
+    </div>
+</div>

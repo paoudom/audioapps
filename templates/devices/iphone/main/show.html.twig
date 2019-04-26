@@ -1,19 +1,19 @@
-{% extends "base.html.twig" %}
+{% extends "devices/ipad/base.html.twig" %}
+
 
 {% block pagetitle %}
-<h1 class="text-center display-4 mb-4">AUDIOAPPS</h1>
 {% endblock %}
 
 {% block body %}
 
 <div class="row">
 
-    <div class="col-9">
+    <div class="col-12">
         {{ include('main/include/audioapp.html.twig') }}
     </div>
     
     
-    <div class="col-3">
+    <div class="col-12">
         {{ include('main/include/menu.audioapp.html.twig') }}
     </div>
 

@@ -52,6 +52,7 @@ class MainController extends AbstractController
               $request->query->getInt('page', 1), 
               12);
           $title = 'Last Updated apps';
+          $audioapps->setPageRange(1);
           $subcategories = $categories;
         
 
